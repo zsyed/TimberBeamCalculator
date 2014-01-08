@@ -1,0 +1,15 @@
+﻿@model TimberBeamCalculator.Models.Dimensions
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Calculator goes here.</h2>
+
+
+    @using (Html.BeginForm()) {
+        <p>Enter steel beam span length: @Html.TextBoxFor(x => x.SpanLength) </p>
+        <p>Permanent Load Safety Factor: @Html.TextBoxFor(x => x.PermanentLoadSafetyFactor)</p>
+        <p>Variable Load Safety Factor: @Html.TextBoxFor(x => x.VariableLoadSafetyFactor)</p>
+        <input type="submit" value="Run Calculation" />
+    }
