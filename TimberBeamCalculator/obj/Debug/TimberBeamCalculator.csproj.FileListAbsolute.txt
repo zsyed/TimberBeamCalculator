@@ -80,6 +80,8 @@ C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCal
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\ru\System.Spatial.resources.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\zh-Hans\System.Spatial.resources.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\zh-Hant\System.Spatial.resources.dll
-C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.csprojResolveAssemblyReference.cache
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.pdb
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\itextsharp.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\RazorPDF.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.csprojResolveAssemblyReference.cache

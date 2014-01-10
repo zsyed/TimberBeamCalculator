@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RazorPDF;
 
 namespace TimberBeamCalculator.Controllers
 {
@@ -27,6 +28,12 @@ namespace TimberBeamCalculator.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public PdfResult Pdf()
+        {
+            // With no Model and default view name.  Pdf is always the default view name
+            return new PdfResult();
         }
     }
 }
