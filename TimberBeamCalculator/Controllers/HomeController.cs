@@ -30,10 +30,5 @@ namespace TimberBeamCalculator.Controllers
             return View();
         }
 
-        public PdfResult Pdf()
-        {
-            // With no Model and default view name.  Pdf is always the default view name
-            return new PdfResult();
-        }
     }
 }
