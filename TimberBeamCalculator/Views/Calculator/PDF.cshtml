@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TimberBeamCalculator.Models.Dimensions
+@{
     Layout = null;
 }
 
@@ -6,19 +7,29 @@
     <table width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" borderwidth="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Today:</chunk>
+                <chunk style="font-weight:bold;">Safety Factor:</chunk>
             </cell>
             <cell>
-                <chunk style="">@DateTime.Now.ToString("MM/dd/yyyy")</chunk>
+                <chunk style="">@Model.PermanentLoadSafetyFactor</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Yesterday:</chunk>
+                <chunk style="font-weight:bold;">Span Length:</chunk>
             </cell>
             <cell>
-                <chunk style="">@DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy")</chunk>
+                <chunk style="">@Model.SpanLength</chunk>
             </cell>
         </row>
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Variable Load Safety:</chunk>
+            </cell>
+            <cell>
+                <chunk style="">@Model.VariableLoadSafetyFactor</chunk>
+            </cell>
+        </row>
+
+
     </table>
 </itext>

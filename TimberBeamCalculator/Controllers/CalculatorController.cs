@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RazorPDF;
+using TimberBeamCalculator.Models;
 
 namespace TimberBeamCalculator.Controllers
 {
@@ -14,19 +15,20 @@ namespace TimberBeamCalculator.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var dim = new Dimensions() { PermanentLoadSafetyFactor = 3.3, SpanLength = 4.2, VariableLoadSafetyFactor = 7.6 }; 
+            return View(dim);
         }
 
         [HttpPost]
-        public ActionResult Index(string Id)
+        public ActionResult Index(Dimensions d)
         {
-            return RedirectToAction("Pdf");
+            return RedirectToAction("Pdf", d);
         }
 
-        public PdfResult Pdf()
+        public PdfResult Pdf(Dimensions d)
         {
             // With no Model and default view name.  Pdf is always the default view name
-            return new PdfResult();
+            return new PdfResult(d);
         }
 
     }
