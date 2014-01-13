@@ -27,7 +27,8 @@ namespace TimberBeamCalculator.Controllers
 
         public PdfResult Pdf(Dimensions d)
         {
-            d.ProjectTitle = "Timber Beam Project Report.";
+            d.ProjectTitle = "Timber Beam Project Detailed Report.";
+            // this should open the pdf in new window.
             Response.AddHeader("content-disposition", "attachment; filename=YourSanitazedFileName.pdf");
             // With no Model and default view name.  Pdf is always the default view name
             return new PdfResult(d);
