@@ -27,6 +27,7 @@ namespace TimberBeamCalculator.Controllers
 
         public PdfResult Pdf(Dimensions d)
         {
+            d.ProjectTitle = "Timber Beam Project Report.";
             // With no Model and default view name.  Pdf is always the default view name
             return new PdfResult(d);
         }

@@ -7,6 +7,7 @@ namespace TimberBeamCalculator.Models
 {
     public class Dimensions
     {
+        public string ProjectTitle { get; set; }
         public double SpanLength { get; set; }
         public double VariableLoadSafetyFactor { get; set; }
         public double PermanentLoadSafetyFactor { get; set; }
