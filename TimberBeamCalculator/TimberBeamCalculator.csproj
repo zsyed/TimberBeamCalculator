@@ -317,6 +317,7 @@
     <Content Include="Views\Calculator\Pdf.cshtml" />
     <Content Include="Views\Examples\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="TimberBeamData.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
