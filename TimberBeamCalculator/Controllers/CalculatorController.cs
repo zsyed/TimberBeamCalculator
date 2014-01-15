@@ -24,7 +24,6 @@ namespace TimberBeamCalculator.Controllers
         [HttpPost]
         public ActionResult Index(Dimensions d)
         {
-            // string filename = @"C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\TimberBeamData.xlsx";
             string filename = Server.MapPath("/") + "TimberBeamData.xlsx";
             string connectionString = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=YES\";", filename);
             string query = String.Format("SELECT * from [{0}$]", "myRange1");
