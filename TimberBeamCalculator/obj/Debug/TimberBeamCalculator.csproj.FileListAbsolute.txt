@@ -86,3 +86,4 @@ C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCal
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\RazorPDF.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\Elmah.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\Elmah.Mvc.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.csprojResolveAssemblyReference.cache
