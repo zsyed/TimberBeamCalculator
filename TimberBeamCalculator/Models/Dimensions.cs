@@ -11,5 +11,6 @@ namespace TimberBeamCalculator.Models
         public double SpanLength { get; set; }
         public double VariableLoadSafetyFactor { get; set; }
         public double PermanentLoadSafetyFactor { get; set; }
+        public double FinalResult { get; set; }
     }
 }
