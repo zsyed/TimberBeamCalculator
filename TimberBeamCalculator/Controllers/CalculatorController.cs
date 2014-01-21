@@ -11,6 +11,8 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
 using System.Drawing;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace TimberBeamCalculator.Controllers
 {
@@ -22,51 +24,43 @@ namespace TimberBeamCalculator.Controllers
 
         public ActionResult Index()
         {
-            var dim = new Dimensions() { PermanentLoadSafetyFactor = 3.3, SpanLength = 4.2, VariableLoadSafetyFactor = 7.6 }; 
+            var dim = new TimberBeamCalculator.Models.Dimensions() { PermanentLoadSafetyFactor = 3.3, SpanLength = 4.2, VariableLoadSafetyFactor = 7.6 }; 
             return View(dim);
         }
 
         [HttpPost]
-        public ActionResult Index(Dimensions d)
+        public ActionResult Index(TimberBeamCalculator.Models.Dimensions d)
         {
             string filename = Server.MapPath("/") + "TimberBeamData.xlsx";
-            const int startRow = 1;
-            const int startCol = 0;
-            List<double> exampleDataList = new List<double>();
-            var finalResuls = new List<double>();
-            var existingFile = new FileInfo(filename);
-            using (var package = new ExcelPackage(existingFile))
+
+            // getting the result out of excel.
+            using (SpreadsheetDocument document = SpreadsheetDocument.Open(filename, true))
             {
-                ExcelWorkbook workBook = package.Workbook;
-                var currentWorksheet = workBook.Worksheets.First();
+                document.WorkbookPart.Workbook.CalculationProperties.ForceFullCalculation = true;
+                document.WorkbookPart.Workbook.CalculationProperties.FullCalculationOnLoad = true;
 
-                exampleDataList.AddRange(
-                    Enumerable.Range(startRow + 1, currentWorksheet.Dimension.End.Row)
-                    .Select(i => Convert.ToDouble(currentWorksheet.Cells[i, 1].Value))
-                    );
-
-                for (var index = startCol + 1; index <= currentWorksheet.Dimension.End.Column; ++index)
+                Sheet sheet = document.WorkbookPart.Workbook.Descendants<Sheet>().SingleOrDefault(s => s.Name == "myRange1");
+                if (sheet == null)
                 {
-                    if (currentWorksheet.Cells[4, index].Style.Font.Color.Rgb != null)
-                    {
-                        if (currentWorksheet.Cells[4, index].Style.Font.Color.Rgb.ToString() == "FFFF0000")
-                        {
-                            d.FinalResult = Convert.ToDouble(currentWorksheet.Cells[4, index].Value);
-                        }
-                    }
+                    throw new ArgumentException(
+                        String.Format("No sheet named {0} found in spreadsheet {1}", "myRange1", filename), "sheetName");
                 }
+                WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheet.Id);
 
+                int rowIndex = int.Parse("C4".Substring(1));
+
+                Row row = worksheetPart.Worksheet.GetFirstChild<SheetData>().
+                        Elements<Row>().FirstOrDefault(r => r.RowIndex == rowIndex);
+ 
+                Cell cell = row.Elements<Cell>().FirstOrDefault(c => "C4".Equals(c.CellReference.Value));
+                d.Average = Convert.ToDouble(cell.CellValue.InnerText);
             }
-
-            d.PermanentLoadSafetyFactor = exampleDataList[0];
-            d.SpanLength = exampleDataList[1];
-            d.VariableLoadSafetyFactor = exampleDataList[2];
 
 
             return RedirectToAction("Pdf", d);
         }
 
-        public PdfResult Pdf(Dimensions d)
+        public PdfResult Pdf(TimberBeamCalculator.Models.Dimensions d)
         {
             d.ProjectTitle = "Timber Beam Project Detailed Report.";
             // this should open the pdf in new window.
@@ -77,3 +71,4 @@ namespace TimberBeamCalculator.Controllers
 
     }
 }
+

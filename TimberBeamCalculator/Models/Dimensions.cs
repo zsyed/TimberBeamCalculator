@@ -12,5 +12,6 @@ namespace TimberBeamCalculator.Models
         public double VariableLoadSafetyFactor { get; set; }
         public double PermanentLoadSafetyFactor { get; set; }
         public double FinalResult { get; set; }
+        public double Average { get; set; }
     }
 }
