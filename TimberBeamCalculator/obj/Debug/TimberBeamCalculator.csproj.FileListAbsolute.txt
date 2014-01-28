@@ -90,3 +90,5 @@ C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCal
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\EPPlus.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\EPPlus.xml
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\DocumentFormat.OpenXml.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\ClosedXML.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\ClosedXML.xml
