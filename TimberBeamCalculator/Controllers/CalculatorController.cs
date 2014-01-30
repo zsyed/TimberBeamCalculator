@@ -30,45 +30,89 @@ namespace TimberBeamCalculator.Controllers
 
         public ActionResult Index()
         {
-            var dim = new TimberBeamCalculator.Models.Dimensions() { PermanentLoadSafetyFactor = 3.3, SpanLength = 4.2, VariableLoadSafetyFactor = 7.6 }; 
+            var dim = new TimberBeamCalculator.Models.Dimensions();
+
+            
             return View(dim);
         }
 
-
-
-
-      
-
         [HttpPost]
-        public ActionResult Index(TimberBeamCalculator.Models.Dimensions d)
+        public ActionResult Index(TimberBeamCalculator.Models.Dimensions dim)
         {
-            string filename;
-            string path = Server.MapPath("/"); 
+
+            dim.JobNumber = 157;
+            dim.ProjectTitle = "Denby House Business Centre";
+            dim.ProjectDescription = "Timber Beam 1";
+            dim.TimberGrade = "C16";
+            dim.ProjectDate = DateTime.Now.ToShortDateString();
+
+            dim.BeamSpanLength = 1.0;
+            dim.WidthOfTimberBeam = 2.0;
+            dim.DepthOfTimberBeam = 73.3;
+
+            dim.TimberGrade = "C16";
+            dim.BendingParallelToGrain = 5.3;
+            dim.CompPrependicularToGrain = 1.7;
+            dim.ShearParallelToGrain = 0.67;
+            dim.ModulusOfElasticityMean = 8800;
+            dim.ModulusOfElasticityMin = 5800;
             
-            filename = path + "TimberBeamData.xlsx";
+            dim.LoadIncludesRoofLoadingUse = false;
+            dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;
+            if (dim.LoadIncludesRoofLoadingUse == true)
+            {
+                dim.DurationOfLoadK3 = 1.25;
+            }
+            else
+            {
+                dim.DurationOfLoadK3 = 1.0;
+            }
+            if (dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel == true)
+            {
+                dim.ModulusOfElasticityK8 = 1.1;
+                if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.TwoPieces)
+                {
+                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    {
+                        dim.ModulusOfElasticityK9 = 1.14;
+                    }
+                    else
+                    {
+                        dim.ModulusOfElasticityK9 = 1.06;
+                    }
+                }
+                else if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.ThreePieces)
+                {
+                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    {
+                        dim.ModulusOfElasticityK9 = 1.21;
+                    }
+                    else
+                    {
+                        dim.ModulusOfElasticityK9 = 1.08;
+                    }
+                }
+                else
+                {
+                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    {
+                        dim.ModulusOfElasticityK9 = 1.24;
+                    }
+                    else
+                    {
+                        dim.ModulusOfElasticityK9 = 1.10;
+                    }
+                }
+            }
+            else
+            {
+                dim.ModulusOfElasticityK8 = 1.0;
+                dim.ModulusOfElasticityK9 = 1.0;
 
-            var workbook = new XLWorkbook(filename);
-            var ws = workbook.Worksheet(1);
-
-            string s = ws.Cell("C4").FormulaA1;
-
-            var c1 = Convert.ToDouble(d.PermanentLoadSafetyFactor.ToString());
-            var c2 = Convert.ToDouble(d.SpanLength.ToString());
-            ws.Cell("C2").SetValue(c1).CellBelow().SetValue(c1); 
-            ws.Cell("C3").SetValue(c2).CellBelow().SetValue(c2);
-            ws.Cell("C4").FormulaA1 =s ;
-            
-            
-            workbook.Save();
-
-            d.FinalResult = Convert.ToDouble(ws.Cell("C4").GetString());
-
-     
-
+            }
+            dim.AllowableShearStressResult = dim.ShearParallelToGrain * dim.DurationOfLoadK3 * dim.ModulusOfElasticityK8;
             // Create excel sheet with one cell as an output of sum of 3 numbers.
-
-
-            return RedirectToAction("Pdf", d);
+            return RedirectToAction("Pdf", dim);
         }
 
         public PdfResult Pdf(TimberBeamCalculator.Models.Dimensions d)
@@ -85,88 +129,22 @@ namespace TimberBeamCalculator.Controllers
 }
 
 
-            //////SaveNumberToCell(filename, "myRange1", "C2", d.PermanentLoadSafetyFactor.ToString());
-            //////SaveNumberToCell(filename, "myRange1", "C3", d.SpanLength.ToString());
-            //////SaveNumberToCell(filename, "myRange1", "C4", d.VariableLoadSafetyFactor.ToString());
+////////string filename;
+////////string path = Server.MapPath("/"); 
 
-            //////ClearAllValuesInSheet(filename);
+////////filename = path + "TimberBeamData.xlsx";
 
-        //////private void ClearAllValuesInSheet(string fileName)
-        //////{
-        //////    using (SpreadsheetDocument document = SpreadsheetDocument.Open(fileName, true))
-        //////    {
+////////var workbook = new XLWorkbook(filename);
+////////var ws = workbook.Worksheet(1);
 
-        //////        document.WorkbookPart.WorksheetParts
-        //////            .SelectMany(part => part.Worksheet.Elements<SheetData>())
-        //////            .SelectMany(data => data.Elements<Row>())
-        //////            .SelectMany(row => row.Elements<Cell>())
-        //////            .Where(cell => cell.CellFormula != null)
-        //////            .Where(cell => cell.CellValue != null)
-        //////            .ToList()
-        //////            .ForEach(cell => cell.CellValue.Remove())
-        //////            ;
+////////string s = ws.Cell("C4").FormulaA1;
 
-        //////            }
-        //////        }
+////////var c1 = Convert.ToDouble(d.PermanentLoadSafetyFactor.ToString());
+////////var c2 = Convert.ToDouble(d.SpanLength.ToString());
+////////ws.Cell("C2").SetValue(c1).CellBelow().SetValue(c1); 
+////////ws.Cell("C3").SetValue(c2).CellBelow().SetValue(c2);
+////////ws.Cell("C4").FormulaA1 =s ;
 
+////////workbook.Save();
 
-////////private void SaveNumberToCell(string fileName, string sheetName, string cellCoordinates, string value)
-////////{
-////////    using (SpreadsheetDocument document = SpreadsheetDocument.Open(fileName, true))
-////////    {
-
-
-////////        Sheet sheet = document.WorkbookPart.Workbook.Descendants<Sheet>().SingleOrDefault(s => s.Name == sheetName);
-////////        if (sheet == null)
-////////        {
-////////            throw new ArgumentException(
-////////                String.Format("No sheet named {0} found in spreadsheet {1}", "myRange1", "myfile"), "sheetName");
-////////        }
-////////        WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheet.Id);
-
-
-////////        int rowIndex = int.Parse(cellCoordinates.Substring(1));
-
-////////        Row row = worksheetPart.Worksheet.GetFirstChild<SheetData>().
-////////                Elements<Row>().FirstOrDefault(r => r.RowIndex == rowIndex);
-
-////////        Cell cell3 = row.Elements<Cell>().FirstOrDefault(c => cellCoordinates.Equals(c.CellReference.Value));
-////////        if (cell3 != null)
-////////        {
-////////            cell3.CellValue = new CellValue(value);
-////////            cell3.DataType = new DocumentFormat.OpenXml.EnumValue<CellValues>(CellValues.Number);
-////////        }
-
-////////        worksheetPart.Worksheet.Save();
-////////        document.Close();
-
-////////    }
-////////}
-
-////////var excelApp = new Microsoft.Office.Interop.Excel.Application();
-////////Microsoft.Office.Interop.Excel.Workbook workbook = excelApp.Workbooks.OpenXML(Path.GetFullPath(filename));
-////////workbook.Close(true);
-////////excelApp.Quit();
-
-            ////////// getting the result out of excel.
-            ////////using (SpreadsheetDocument document = SpreadsheetDocument.Open(filename, false))
-            ////////{
-
-            ////////    Sheet sheet = document.WorkbookPart.Workbook.Descendants<Sheet>().SingleOrDefault(s => s.Name == "myRange1");
-            ////////    if (sheet == null)
-            ////////    {
-            ////////        throw new ArgumentException(
-            ////////            String.Format("No sheet named {0} found in spreadsheet {1}", "myRange1", filename), "sheetName");
-            ////////    }
-
-            ////////    WorksheetPart worksheetPart = (WorksheetPart)document.WorkbookPart.GetPartById(sheet.Id);
-
-            ////////    int rowIndex = int.Parse("C5".Substring(1));
-
-            ////////    Row row = worksheetPart.Worksheet.GetFirstChild<SheetData>().
-            ////////            Elements<Row>().FirstOrDefault(r => r.RowIndex == rowIndex);
-
-            ////////    Cell cell = row.Elements<Cell>().FirstOrDefault(c => "C5".Equals(c.CellReference.Value));
-
-            ////////    double val = Convert.ToDouble(cell.CellValue.InnerText);
-            ////////}
+////////d.FinalResult = Convert.ToDouble(ws.Cell("C4").GetString());

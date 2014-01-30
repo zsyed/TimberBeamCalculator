@@ -8,8 +8,8 @@
 
 
     @using (Html.BeginForm()) {
-        <p>Enter steel beam span length: @Html.TextBoxFor(x => x.SpanLength) </p>
-        <p>Permanent Load Safety Factor: @Html.TextBoxFor(x => x.PermanentLoadSafetyFactor)</p>
-        <p>Variable Load Safety Factor: @Html.TextBoxFor(x => x.VariableLoadSafetyFactor)</p>
+        <p>Beam span length = @Html.TextBoxFor(x => x.BeamSpanLength) meters </p>
+        <p>Width of Timber Beam = @Html.TextBoxFor(x => x.WidthOfTimberBeam) millimeters</p>
+        <p>Depth of Timber Beam = @Html.TextBoxFor(x => x.DepthOfTimberBeam) millimeters (72 mm minimum - 300 mm maximum)</p>
         <input type="submit" value="Run Calculation" />
     }

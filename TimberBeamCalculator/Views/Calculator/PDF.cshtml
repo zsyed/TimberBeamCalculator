@@ -4,49 +4,90 @@
 }
 
 <itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
-    <table width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" borderwidth="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+    <table>
 
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Name of the report:</chunk>
+                <chunk style="font-weight:bold;">Project: @Model.ProjectTitle</chunk>
             </cell>
 
+        </row>
+        <row>
             <cell>
-                <chunk style="font-weight:bold;">@Model.ProjectTitle</chunk>
+                <chunk style="font-weight:bold;">Job Number: @Model.JobNumber</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Safety Factor:</chunk>
-            </cell>
-            <cell>
-                <chunk style="">@Model.PermanentLoadSafetyFactor</chunk>
+                <chunk style="font-weight:bold;">Description: @Model.ProjectDescription</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Span Length:</chunk>
-            </cell>
-            <cell>
-                <chunk style="">@Model.SpanLength</chunk>
+                <chunk style="font-weight:bold;">Project Date: @Model.ProjectDate</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Variable Load Safety:</chunk>
-            </cell>
-            <cell>
-                <chunk style="">@Model.VariableLoadSafetyFactor</chunk>
+                <chunk style="font-weight:bold;">Beam Span Length: @Model.BeamSpanLength</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Final Result:</chunk>
-            </cell>
-            <cell>
-                <chunk style="">@Model.FinalResult</chunk>
+                <chunk style="font-weight:bold;">Width of beam: @Model.WidthOfTimberBeam</chunk>
             </cell>
         </row>
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Depth of beam: @Model.DepthOfTimberBeam</chunk>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Timber Grade: @Model.TimberGrade</chunk>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">                                                    K3  K8</chunk>
+            </cell>
+        </row>
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Allowable Shear Stress: @Model.ShearParallelToGrain x @Model.DurationOfLoadK3 x @Model.ModulusOfElasticityK8 = @Model.AllowableShearStressResult N/mm2</chunk>
+            </cell>
+        </row>
+
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Notes</chunk>
+            </cell>
+        </row>
+
+                <row>
+            <cell>
+                <chunk style="font-weight:bold;">This design is in accordance with BS 5268-2:2002 Structural use of timber-</chunk>
+            </cell>
+        </row>
+
+                <row>
+            <cell>
+                <chunk style="font-weight:bold;">Part 2: Code of practice for permissible stress design, materials and</chunk>
+            </cell>
+        </row>
+
+                <row>
+            <cell>
+                <chunk style="font-weight:bold;">workmanship.</chunk>
+            </cell>
+        </row>
+
+                        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Timber to be covered, this calculator is not to be used for timber which is fully exposed to the elements.</chunk>
+            </cell>
+        </row>
+
 
     </table>
 </itext>
