@@ -7,7 +7,19 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-    </head>
+    	<!--This bundle was moved by the Kendo UI VS Extensions for compatibility reasons-->
+	@Scripts.Render("~/bundles/jquery")
+	<!--This CSS entry was added by the Kendo UI VS Extensions for compatibility reasons-->
+	<link href="@Url.Content("~/Content/kendo.compatibility.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2013.2.918/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2013.2.918/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2013.2.918/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2013.2.918/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2013.2.918/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2013.2.918/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2013.2.918/kendo.aspnetmvc.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
     <body>
         <header>
             <div class="content-wrapper">
@@ -45,7 +57,7 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
+        
         @RenderSection("scripts", required: false)
     </body>
 </html>
