@@ -40,17 +40,13 @@ namespace TimberBeamCalculator.Controllers
         public ActionResult Index(TimberBeamCalculator.Models.Dimensions dim)
         {
 
+ 
             dim.JobNumber = 157;
             dim.ProjectTitle = "Denby House Business Centre";
             dim.ProjectDescription = "Timber Beam 1";
             dim.TimberGrade = "C16";
             dim.ProjectDate = DateTime.Now.ToShortDateString();
 
-            dim.BeamSpanLength = 1.0;
-            dim.WidthOfTimberBeam = 2.0;
-            dim.DepthOfTimberBeam = 73.3;
-
-            dim.TimberGrade = "C16";
             dim.BendingParallelToGrain = 5.3;
             dim.CompPrependicularToGrain = 1.7;
             dim.ShearParallelToGrain = 0.67;
