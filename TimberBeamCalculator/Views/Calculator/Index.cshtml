@@ -8,12 +8,14 @@
 
 
     @using (Html.BeginForm()) {
+
+        
         <p>Beam span length =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
             .Name("BeamSpanLength")
             .Format("#.00 meters")
             .Min(00.00)
-            .Step(1.00)
             .Value(1.00)
+            .Spinners(false)
             )
         </p>
 
@@ -22,8 +24,8 @@
             .Name("WidthOfTimberBeam")
             .Format("#.00 millimeters")
             .Min(00.00)
-            .Step(1.00)
             .Value(1.00)
+            .Spinners(false)
             )
         </p>
         <p>Depth of Timber Beam =  @(Html.Kendo().NumericTextBoxFor(x => x.DepthOfTimberBeam)
@@ -31,27 +33,42 @@
             .Format("#.00 millimeters")
             .Min(72.00)
             .Max(300.00)
-            .Step(1.00)
             .Value(72)
-            
+            .Spinners(false)
         ) (72 mm minimum - 300 mm maximum)
         </p>
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
             .Name("TimberGrade")
             .Value("C16")
-            
         ) 
         </p>
+        
+        <p>Load Includes roof loading user =  @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
+            .Name("LoadIncludesRoofLoadingUse")
+          .BindTo(new List<SelectListItem>() {
+              new SelectListItem() {
+                  Text = "No",
+                  Value = "False"
+              },
+              new SelectListItem() {
+                  Text = "Yes",
+                  Value = "True"
+              }
+          })
+          .Value("False")
+            )
+        </p>
+        
+        
         <p>Duration of load =  @(Html.Kendo().NumericTextBoxFor(x => x.DurationOfLoadK3)
             .Name("DurationOfLoadK3")
             .Format("#.00")
             .Min(00.00)
-            .Step(1.00)
+            .Spinners(false)
             .Value(1.00)
             )
         </p>
-
-        
-        
-                <input type="submit" value="Run Calculation" />
+       
+        <input type="submit" value="Run Calculation" />
     }
+

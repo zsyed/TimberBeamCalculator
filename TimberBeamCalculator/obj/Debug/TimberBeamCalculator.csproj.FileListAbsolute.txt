@@ -107,3 +107,4 @@ C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCal
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\sv-SE\Kendo.Mvc.resources.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\projects\MyGitProject\TimberBeamCalculator\TimberBeamCalculator\TimberBeamCalculator\obj\Debug\TimberBeamCalculator.csprojResolveAssemblyReference.cache
