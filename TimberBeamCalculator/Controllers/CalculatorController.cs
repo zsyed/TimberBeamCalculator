@@ -52,17 +52,8 @@ namespace TimberBeamCalculator.Controllers
             dim.ShearParallelToGrain = 0.67;
             dim.ModulusOfElasticityMean = 8800;
             dim.ModulusOfElasticityMin = 5800;
-            
-            dim.LoadIncludesRoofLoadingUse = false;
-            dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;
-            if (dim.LoadIncludesRoofLoadingUse == true)
-            {
-                dim.DurationOfLoadK3 = 1.25;
-            }
-            else
-            {
-                dim.DurationOfLoadK3 = 1.0;
-            }
+      
+            dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;    
             if (dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel == true)
             {
                 dim.ModulusOfElasticityK8 = 1.1;

@@ -7,7 +7,17 @@
 <h2>Calculator goes here.</h2>
 
 
-    @using (Html.BeginForm()) {
+        @using (Html.BeginForm()) {
+        
+            
+            
+        <script>
+            $(document).ready(function () {
+                //$("#divDurationOfLoadK3").hide();
+            });
+        </script> 
+            
+            
 
         
         <p>Beam span length =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
@@ -43,31 +53,66 @@
         ) 
         </p>
         
-        <p>Load Includes roof loading user =  @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
+        <p>Load Includes roof loading user = 
+            @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
             .Name("LoadIncludesRoofLoadingUse")
-          .BindTo(new List<SelectListItem>() {
-              new SelectListItem() {
-                  Text = "No",
-                  Value = "False"
-              },
-              new SelectListItem() {
-                  Text = "Yes",
-                  Value = "True"
-              }
-          })
-          .Value("False")
-            )
-        </p>
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(new List<SelectListItem>()
+            {
+                new SelectListItem() {
+                    Text = "No", Value = "False"  
+                },
+                new SelectListItem() {
+                    Text = "Yes", Value = "True"  
+                }
+            })
+            .Events(e => e.Select("OnSelect"))
+                )
+
+            <div id="divDurationOfLoadK3">
+                Duration of load =  @(Html.Kendo().NumericTextBoxFor(x => x.DurationOfLoadK3)
+                                        .Name("DurationOfLoadK3")
+                                        .Format("#.00")
+                                        .Min(00.00)
+                                        .Spinners(false)
+                                        .Value(1.00)
+                                    )
+                
+            </div>
+    
+            </p>
+        
+                
+
+
+        
+        <script>
+            function OnSelect(e) {
+                var dataItem = this.dataItem(e.item.index());
+                if (dataItem.Value == "True") {
+                   
+                    $("#DurationOfLoadK3").kendoNumericTextBox({
+                        value: 1.25,
+                        spinners: false
+                    });
+                }
+                else {
+                    $("#DurationOfLoadK3").kendoNumericTextBox({
+                        value: 1.00,
+                        spinners: false
+                    });
+                }
+            }
+
+        </script>
         
         
-        <p>Duration of load =  @(Html.Kendo().NumericTextBoxFor(x => x.DurationOfLoadK3)
-            .Name("DurationOfLoadK3")
-            .Format("#.00")
-            .Min(00.00)
-            .Spinners(false)
-            .Value(1.00)
-            )
-        </p>
+        
+        
+        
+
+        
        
         <input type="submit" value="Run Calculation" />
     }
