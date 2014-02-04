@@ -1,4 +1,4 @@
-﻿@model TimberBeamCalculator.Models.Dimensions
+﻿    @model TimberBeamCalculator.Models.Dimensions
 
 @{
     ViewBag.Title = "Index";
@@ -52,6 +52,25 @@
             .Value("C16")
         ) 
         </p>
+        <p>
+            <div id="DivTimberGradeGrid">
+                @(Html.Kendo().Grid<TimberBeamCalculator.Models.TimberGrades>()
+                    .Name("TimberGradeGrid")
+                    .DataSource(ds => ds
+                                    .Ajax()
+                                    .Read(r => r.Action("TimberData_Read", "Calculator"))   
+                    )
+                    .Columns(c=> 
+                            {
+                                c.Bound(t => t.TimberGrade);
+                                c.Bound(t => t.BendingParallelToGrain);
+                            }
+                    )
+                )
+
+             
+            </div>
+        </p>
         
         <p>Load Includes roof loading user = 
             @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
@@ -67,7 +86,7 @@
                     Text = "Yes", Value = "True"  
                 }
             })
-            .Events(e => e.Select("OnSelect"))
+            .Events(e => e.Select("OnSelectLoadIncludesRoofLoadingUse"))
                 )
 
             <div id="divDurationOfLoadK3">
@@ -82,13 +101,8 @@
             </div>
     
             </p>
-        
-                
-
-
-        
         <script>
-            function OnSelect(e) {
+            function OnSelectLoadIncludesRoofLoadingUse(e) {
                 var dataItem = this.dataItem(e.item.index());
                 if (dataItem.Value == "True") {
                    
