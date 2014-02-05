@@ -1,24 +1,16 @@
-﻿    @model TimberBeamCalculator.Models.Dimensions
-
+﻿@model TimberBeamCalculator.Models.Dimensions
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Calculator goes here.</h2>
-
-
         @using (Html.BeginForm()) {
-        
-            
             
         <script>
             $(document).ready(function () {
                 //$("#divDurationOfLoadK3").hide();
             });
         </script> 
-            
-            
-
         
         <p>Beam span length =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
             .Name("BeamSpanLength")
@@ -49,7 +41,7 @@
         </p>
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
             .Name("TimberGrade")
-            .Value("C16")
+  
         ) 
         </p>
         <p>
@@ -62,10 +54,12 @@
                     )
                     .Columns(c=> 
                             {
-                                c.Bound(t => t.TimberGrade);
-                                c.Bound(t => t.BendingParallelToGrain);
+                                c.Bound(t => t.TimberGrade).Width(10);
+                                c.Bound(t => t.BendingParallelToGrain).Width(20);
                             }
                     )
+                    .Selectable(s => s.Mode(GridSelectionMode.Single))
+                    .Events(e => e.Change("OnChangeDivTimberGradeGrid"))
                 )
 
              
@@ -119,10 +113,14 @@
                 }
             }
 
+            function OnChangeDivTimberGradeGrid(arg) {
+                var selected = $.map(this.select(), function (item) {
+                    var grade = $(item).text().substring(0, 3);
+                    $("#TimberGrade").val(grade);
+
+                });
+            }
+
         </script>
-            
             @Html.Kendo().Button().Name("setting").Icon("pencil").HtmlAttributes(new { type = "submit" }).Content("Run Calculation");
-                
-
         }
-
