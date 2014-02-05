@@ -40,11 +40,7 @@ namespace TimberBeamCalculator.Controllers
 
         public ActionResult TimberData_Read([DataSourceRequest]DataSourceRequest request)
         {
-            var grades = new List<TimberGrades>();
-            grades.Add(new TimberGrades() { TimberGrade = "C14", BendingParallelToGrain = 4.1 });
-            grades.Add(new TimberGrades() { TimberGrade = "C16", BendingParallelToGrain = 5.3 });
-
-            IQueryable<TimberGrades> res = grades.AsQueryable<TimberGrades>();
+            IQueryable<TimberGrades> res = Grades.GetList().AsQueryable<TimberGrades>();
             DataSourceResult res1 = res.ToDataSourceResult(request);
             return Json(res1, JsonRequestBehavior.AllowGet);
         }
@@ -52,15 +48,14 @@ namespace TimberBeamCalculator.Controllers
         [HttpPost]
         public ActionResult Index(TimberBeamCalculator.Models.Dimensions dim)
         {
-
+            var selectedValue = Grades.GetList().Where(g => g.TimberGrade.Equals(dim.TimberGrade)).First();
  
             dim.JobNumber = 157;
             dim.ProjectTitle = "Denby House Business Centre";
             dim.ProjectDescription = "Timber Beam 1";
-            dim.TimberGrade = "C16";
             dim.ProjectDate = DateTime.Now.ToShortDateString();
 
-            dim.BendingParallelToGrain = 5.3;
+            dim.BendingParallelToGrain = selectedValue.BendingParallelToGrain;
             dim.CompPrependicularToGrain = 1.7;
             dim.ShearParallelToGrain = 0.67;
             dim.ModulusOfElasticityMean = 8800;

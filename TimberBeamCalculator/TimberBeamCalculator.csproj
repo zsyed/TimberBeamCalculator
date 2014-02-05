@@ -222,7 +222,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Models\Dimensions.cs" />
-    <Compile Include="Models\GradesList.cs" />
+    <Compile Include="Models\Grades.cs" />
     <Compile Include="Models\TimberGrades.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
