@@ -56,10 +56,11 @@ namespace TimberBeamCalculator.Controllers
             dim.ProjectDate = DateTime.Now.ToShortDateString();
 
             dim.BendingParallelToGrain = selectedValue.BendingParallelToGrain;
-            dim.CompPrependicularToGrain = 1.7;
-            dim.ShearParallelToGrain = 0.67;
-            dim.ModulusOfElasticityMean = 8800;
-            dim.ModulusOfElasticityMin = 5800;
+            dim.CompPrependicularToGrain = selectedValue.CompPerpendicularToGrain;
+            dim.ShearParallelToGrain = selectedValue.ShearParallelToGrain;
+            dim.ModulusOfElasticityMean = selectedValue.ModulusOfElasticityMean;
+            dim.ModulusOfElasticityMin = selectedValue.ModulusOfElasticityMin;
+            dim.TimberGradeWoodType = selectedValue.SoftWood ? WoodType.SoftWood: WoodType.HardWood;
       
             dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;    
             if (dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel == true)

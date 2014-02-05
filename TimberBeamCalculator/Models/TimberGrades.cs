@@ -9,11 +9,10 @@ namespace TimberBeamCalculator.Models
     {
         public string TimberGrade { get; set; }
         public double BendingParallelToGrain { get; set; }
-
-        public TimberGrades()
-        {
-            TimberGrade = "C14";
-            BendingParallelToGrain = 4.1;
-        }
+        public double CompPerpendicularToGrain { get; set; }
+        public double ShearParallelToGrain { get; set; }
+        public int ModulusOfElasticityMean { get; set; }
+        public int ModulusOfElasticityMin { get; set; }
+        public bool SoftWood { get; set; }
     }
 }
