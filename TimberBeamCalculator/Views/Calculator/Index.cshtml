@@ -47,8 +47,13 @@
             .Value("C16")
         ) 
              @(Html.Kendo().Button()
-                .Name("TimberGradeButton")
-                .Content("Show Timber Grade Chart")
+                .Name("TimberGradeButtonShow")
+                .Content("Show Chart")
+                .HtmlAttributes( new {type = "button"} )
+                )
+                         @(Html.Kendo().Button()
+                .Name("TimberGradeButtonHide")
+                .Content("Hide Chart")
                 .HtmlAttributes( new {type = "button"} )
                 )
         </p>
@@ -131,14 +136,16 @@
                 var selected = $.map(this.select(), function (item) {
                     var grade = $(item).text().substring(0, 3);
                     $("#TimberGrade").val(grade);
-                    $("#TimberGradeGrid").hide();
                 });
             }
 
-            $("#TimberGradeButton").mousedown(function () {
+            $("#TimberGradeButtonShow").mousedown(function () {
                 $("#TimberGradeGrid").show();
             });
 
+            $("#TimberGradeButtonHide").mousedown(function () {
+                $("#TimberGradeGrid").hide();
+            });
 
         </script>
             
