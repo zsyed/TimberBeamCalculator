@@ -8,7 +8,7 @@
             
         <script>
             $(document).ready(function () {
-                //$("#divDurationOfLoadK3").hide();
+                $("#TimberGradeGrid").hide();
             });
         </script> 
         
@@ -39,11 +39,20 @@
             .Spinners(false)
         ) (72 mm minimum - 300 mm maximum)
         </p>
+            
+           
+            
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
             .Name("TimberGrade")
-  
+            .Value("C16")
         ) 
+             @(Html.Kendo().Button()
+                .Name("TimberGradeButton")
+                .Content("Show Timber Grade Chart")
+                .HtmlAttributes( new {type = "button"} )
+                )
         </p>
+            
         <p>
             <div id="DivTimberGradeGrid">
                 @(Html.Kendo().Grid<TimberBeamCalculator.Models.TimberGrades>()
@@ -122,10 +131,21 @@
                 var selected = $.map(this.select(), function (item) {
                     var grade = $(item).text().substring(0, 3);
                     $("#TimberGrade").val(grade);
-
+                    $("#TimberGradeGrid").hide();
                 });
             }
 
+            $("#TimberGradeButton").mousedown(function () {
+                $("#TimberGradeGrid").show();
+            });
+
+
         </script>
-            @Html.Kendo().Button().Name("setting").Icon("pencil").HtmlAttributes(new { type = "submit" }).Content("Run Calculation");
+            
+        @Html.Kendo().Button().Name("RunCalculationButton").Icon("pencil").HtmlAttributes(new { type = "submit" }).Content("Run Calculation")
+
         }
+
+
+
+
