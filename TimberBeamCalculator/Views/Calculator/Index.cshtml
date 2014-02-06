@@ -68,13 +68,13 @@
                     )
                     .Columns(c=> 
                             {
-                                c.Bound(t => t.TimberGrade).Width(10);
-                                c.Bound(t => t.BendingParallelToGrain).Width(20);
-                                c.Bound(t => t.CompPerpendicularToGrain).Width(10);
-                                c.Bound(t => t.ShearParallelToGrain).Width(20);
-                                c.Bound(t => t.ModulusOfElasticityMean).Width(10);
-                                c.Bound(t => t.ModulusOfElasticityMin).Width(20);
-                                c.Bound(t => t.SoftWood).Width(10);
+                                c.Bound(t => t.TimberGrade).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.BendingParallelToGrain).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.CompPerpendicularToGrain).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.ShearParallelToGrain).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.ModulusOfElasticityMean).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.ModulusOfElasticityMin).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.SoftWood).HeaderHtmlAttributes(new { @class = "vertical-text" });
                             }
                     )
                     .Selectable(s => s.Mode(GridSelectionMode.Single))
@@ -153,6 +153,14 @@
 
         }
 
+<style scoped="scoped">
+.vertical-text
+{
+    writing-mode:tb-rl;
+    height:200px;
+    width:10px;
+}
 
+</style>
 
 
