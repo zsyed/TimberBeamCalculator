@@ -9,12 +9,13 @@
         <script>
             $(document).ready(function () {
                 $("#TimberGradeGrid").hide();
+                //$("#DurationOfLoadK3").hide();
             });
         </script> 
         
         <p>Beam span length =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
             .Name("BeamSpanLength")
-            .Format("#.00 meters")
+            .Format("#.00 metres")
             .Min(00.00)
             .Value(1.00)
             .Spinners(false)
@@ -24,7 +25,7 @@
                 
         <p>Width of Timber Beam =  @(Html.Kendo().NumericTextBoxFor(x => x.WidthOfTimberBeam)
             .Name("WidthOfTimberBeam")
-            .Format("#.00 millimeters")
+            .Format("#.00 millimetres")
             .Min(00.00)
             .Value(1.00)
             .Spinners(false)
@@ -32,7 +33,7 @@
         </p>
         <p>Depth of Timber Beam =  @(Html.Kendo().NumericTextBoxFor(x => x.DepthOfTimberBeam)
             .Name("DepthOfTimberBeam")
-            .Format("#.00 millimeters")
+            .Format("#.00 millimetres")
             .Min(72.00)
             .Max(300.00)
             .Value(72)
@@ -74,7 +75,7 @@
                                 c.Bound(t => t.ShearParallelToGrain).HeaderHtmlAttributes(new { @class = "vertical-text" });
                                 c.Bound(t => t.ModulusOfElasticityMean).HeaderHtmlAttributes(new { @class = "vertical-text" });
                                 c.Bound(t => t.ModulusOfElasticityMin).HeaderHtmlAttributes(new { @class = "vertical-text" });
-                                c.Bound(t => t.SoftWood).HeaderHtmlAttributes(new { @class = "vertical-text" });
+                                c.Bound(t => t.TypeOfWood).HeaderHtmlAttributes(new { @class = "vertical-text" });
                             }
                     )
                     .Selectable(s => s.Mode(GridSelectionMode.Single))
@@ -85,7 +86,7 @@
             </div>
         </p>
         
-        <p>Load Includes roof loading user = 
+        <p>Does the loading include roof loading = 
             @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
             .Name("LoadIncludesRoofLoadingUse")
             .DataTextField("Text")
@@ -99,10 +100,10 @@
                     Text = "Yes", Value = "True"  
                 }
             })
-            .Events(e => e.Select("OnSelectLoadIncludesRoofLoadingUse"))
+            //.Events(e => e.Select("OnSelectLoadIncludesRoofLoadingUse"))
                 )
 
-            <div id="divDurationOfLoadK3">
+@*            <div id="divDurationOfLoadK3">
                 Duration of load =  @(Html.Kendo().NumericTextBoxFor(x => x.DurationOfLoadK3)
                                         .Name("DurationOfLoadK3")
                                         .Format("#.00")
@@ -111,26 +112,26 @@
                                         .Value(1.00)
                                     )
                 
-            </div>
+            </div>*@
     
             </p>
         <script>
-            function OnSelectLoadIncludesRoofLoadingUse(e) {
-                var dataItem = this.dataItem(e.item.index());
-                if (dataItem.Value == "True") {
+            //function OnSelectLoadIncludesRoofLoadingUse(e) {
+            //    var dataItem = this.dataItem(e.item.index());
+            //    if (dataItem.Value == "True") {
                    
-                    $("#DurationOfLoadK3").kendoNumericTextBox({
-                        value: 1.25,
-                        spinners: false
-                    });
-                }
-                else {
-                    $("#DurationOfLoadK3").kendoNumericTextBox({
-                        value: 1.00,
-                        spinners: false
-                    });
-                }
-            }
+            //        $("#DurationOfLoadK3").kendoNumericTextBox({
+            //            value: 1.25,
+            //            spinners: false
+            //        });
+            //    }
+            //    else {
+            //        $("#DurationOfLoadK3").kendoNumericTextBox({
+            //            value: 1.00,
+            //            spinners: false
+            //        });
+            //    }
+            //}
 
             function OnChangeDivTimberGradeGrid(arg) {
                 var selected = $.map(this.select(), function (item) {

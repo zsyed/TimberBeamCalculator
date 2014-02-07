@@ -13,6 +13,6 @@ namespace TimberBeamCalculator.Models
         public double ShearParallelToGrain { get; set; }
         public int ModulusOfElasticityMean { get; set; }
         public int ModulusOfElasticityMin { get; set; }
-        public bool SoftWood { get; set; }
+        public WoodType TypeOfWood { get; set; }
     }
 }

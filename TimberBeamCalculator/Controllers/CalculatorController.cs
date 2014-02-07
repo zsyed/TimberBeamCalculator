@@ -33,8 +33,6 @@ namespace TimberBeamCalculator.Controllers
         public ActionResult Index()
         {
             var dim = new TimberBeamCalculator.Models.Dimensions();
-
-            
             return View(dim);
         }
 
@@ -55,12 +53,21 @@ namespace TimberBeamCalculator.Controllers
             dim.ProjectDescription = "Timber Beam 1";
             dim.ProjectDate = DateTime.Now.ToShortDateString();
 
+            if (dim.LoadIncludesRoofLoadingUse == true)
+            {
+                dim.DurationOfLoadK3 = 1.25;
+            }
+            else
+            {
+                dim.DurationOfLoadK3 = 1.00;
+            }
+
             dim.BendingParallelToGrain = selectedValue.BendingParallelToGrain;
             dim.CompPrependicularToGrain = selectedValue.CompPerpendicularToGrain;
             dim.ShearParallelToGrain = selectedValue.ShearParallelToGrain;
             dim.ModulusOfElasticityMean = selectedValue.ModulusOfElasticityMean;
             dim.ModulusOfElasticityMin = selectedValue.ModulusOfElasticityMin;
-            dim.TimberGradeWoodType = selectedValue.SoftWood ? WoodType.SoftWood: WoodType.HardWood;
+            dim.TimberGradeWoodType = selectedValue.TypeOfWood;
       
             dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;    
             if (dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel == true)
@@ -68,7 +75,7 @@ namespace TimberBeamCalculator.Controllers
                 dim.ModulusOfElasticityK8 = 1.1;
                 if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.TwoPieces)
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.14;
                     }
@@ -79,7 +86,7 @@ namespace TimberBeamCalculator.Controllers
                 }
                 else if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.ThreePieces)
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.21;
                     }
@@ -90,7 +97,7 @@ namespace TimberBeamCalculator.Controllers
                 }
                 else
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWood)
+                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.24;
                     }

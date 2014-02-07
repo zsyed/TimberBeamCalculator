@@ -29,17 +29,17 @@
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Beam Span Length: @Model.BeamSpanLength</chunk>
+                <chunk style="font-weight:bold;">Beam Span Length:  @(@Model.BeamSpanLength.ToString("0.00"))</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Width of beam: @Model.WidthOfTimberBeam</chunk>
+                <chunk style="font-weight:bold;">Width of beam: @(Model.WidthOfTimberBeam.ToString("0.00"))</chunk>
             </cell>
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Depth of beam: @Model.DepthOfTimberBeam</chunk>
+                <chunk style="font-weight:bold;">Depth of beam: @(Model.DepthOfTimberBeam.ToString("0.00"))</chunk>
             </cell>
         </row>
         <row>
@@ -54,7 +54,7 @@
         </row>
         <row>
             <cell>
-                <chunk style="font-weight:bold;">Allowable Shear Stress: @Model.ShearParallelToGrain x @Model.DurationOfLoadK3 x @Model.ModulusOfElasticityK8 = @Model.AllowableShearStressResult N/mm2</chunk>
+                <chunk style="font-weight:bold;">Allowable Shear Stress: @(Model.ShearParallelToGrain.ToString("0.00")) x @(Model.DurationOfLoadK3.ToString("0.00")) x @(Model.ModulusOfElasticityK8.ToString("0.00")) = @(Model.AllowableShearStressResult.ToString("0.00")) N/mm2</chunk>
             </cell>
         </row>
 
