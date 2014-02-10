@@ -8,8 +8,11 @@
             
         <script>
             $(document).ready(function () {
+                $("#spanPiecesRoofLoading").hide();
                 $("#TimberGradeGrid").hide();
-                //$("#DurationOfLoadK3").hide();
+                $("#TimberGrade").width(50);
+                $("#LoadIncludesRoofLoadingUse").width(60);
+                $("#PiecesRoofLoading").width(100);
             });
         </script> 
         
@@ -46,6 +49,7 @@
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
             .Name("TimberGrade")
             .Value("C16")
+            
         ) 
              @(Html.Kendo().Button()
                 .Name("TimberGradeButtonShow")
@@ -88,65 +92,77 @@
         
         <p>Does the loading include roof loading = 
             @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
-            .Name("LoadIncludesRoofLoadingUse")
-            .DataTextField("Text")
-            .DataValueField("Value")
-            .BindTo(new List<SelectListItem>()
-            {
-                new SelectListItem() {
-                    Text = "No", Value = "False"  
-                },
-                new SelectListItem() {
-                    Text = "Yes", Value = "True"  
-                }
-            })
-            //.Events(e => e.Select("OnSelectLoadIncludesRoofLoadingUse"))
+                .Name("LoadIncludesRoofLoadingUse")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .BindTo(new List<SelectListItem>()
+                    {
+                        new SelectListItem() {
+                            Text = "No", Value = "False"  
+                        },
+                        new SelectListItem() {
+                            Text = "Yes", Value = "True"  
+                        }
+                    }
                 )
-
-@*            <div id="divDurationOfLoadK3">
-                Duration of load =  @(Html.Kendo().NumericTextBoxFor(x => x.DurationOfLoadK3)
-                                        .Name("DurationOfLoadK3")
-                                        .Format("#.00")
-                                        .Min(00.00)
-                                        .Spinners(false)
-                                        .Value(1.00)
-                                    )
-                
-            </div>*@
-    
+                .Events( e => e.Change("OnChangeLoadIncludesRoofLoadingUse"))
+            )
+            
+            <span id="spanPiecesRoofLoading">
+     
+  
+            @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
+                .Name("PiecesRoofLoading")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .BindTo(new List<SelectListItem>()
+                {
+                    new SelectListItem() {
+                        Text = "1 Piece", Value = "1"  
+                    },
+                    new SelectListItem() {
+                        Text = "2 Pieces", Value = "2"  
+                    },
+                    new SelectListItem() {
+                        Text = "3 Pieces", Value = "3"  
+                    },
+                    new SelectListItem() {
+                        Text = "4+ Pieces", Value = "4"  
+                    }
+                    
+                })
+            )
+                  </span>
             </p>
-        <script>
-            //function OnSelectLoadIncludesRoofLoadingUse(e) {
-            //    var dataItem = this.dataItem(e.item.index());
-            //    if (dataItem.Value == "True") {
-                   
-            //        $("#DurationOfLoadK3").kendoNumericTextBox({
-            //            value: 1.25,
-            //            spinners: false
-            //        });
-            //    }
-            //    else {
-            //        $("#DurationOfLoadK3").kendoNumericTextBox({
-            //            value: 1.00,
-            //            spinners: false
-            //        });
-            //    }
-            //}
+            
+            
+<script>
 
-            function OnChangeDivTimberGradeGrid(arg) {
-                var selected = $.map(this.select(), function (item) {
-                    var grade = $(item).text().substring(0, 3);
-                    $("#TimberGrade").val(grade);
-                });
-            }
+    function OnChangeLoadIncludesRoofLoadingUse() {
+        var resp = $("#LoadIncludesRoofLoadingUse").val();
+        if (resp == "True") {
+            $("#spanPiecesRoofLoading").show();
+        }
+        else {
+            $("#spanPiecesRoofLoading").hide();
+        }
 
-            $("#TimberGradeButtonShow").mousedown(function () {
-                $("#TimberGradeGrid").show();
-            });
+    }
 
-            $("#TimberGradeButtonHide").mousedown(function () {
-                $("#TimberGradeGrid").hide();
-            });
+    function OnChangeDivTimberGradeGrid(arg) {
+        var selected = $.map(this.select(), function (item) {
+            var grade = $(item).text().substring(0, 3);
+            $("#TimberGrade").val(grade);
+        });
+    }
+
+    $("#TimberGradeButtonShow").mousedown(function () {
+        $("#TimberGradeGrid").show();
+    });
+
+    $("#TimberGradeButtonHide").mousedown(function () {
+        $("#TimberGradeGrid").hide();
+    });
 
         </script>
             
