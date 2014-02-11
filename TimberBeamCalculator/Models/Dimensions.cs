@@ -8,7 +8,8 @@ namespace TimberBeamCalculator.Models
     public enum WoodType
     {
         SoftWoods,
-        HardWoods
+        HardWoods,
+        Oaks
     }
 
     public enum ModulusPieceCount

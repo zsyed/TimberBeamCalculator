@@ -69,7 +69,6 @@ namespace TimberBeamCalculator.Controllers
             dim.ModulusOfElasticityMin = selectedValue.ModulusOfElasticityMin;
             dim.TimberGradeWoodType = selectedValue.TypeOfWood;
       
-            dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel = false;    
             if (dim.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel == true)
             {
                 dim.ModulusOfElasticityK8 = 1.1;

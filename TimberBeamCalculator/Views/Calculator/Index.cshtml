@@ -11,8 +11,8 @@
                 $("#spanPiecesRoofLoading").hide();
                 $("#TimberGradeGrid").hide();
                 $("#TimberGrade").width(50);
-                $("#LoadIncludesRoofLoadingUse").width(60);
-                $("#PiecesRoofLoading").width(100);
+                $("#BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel").width(60);
+                $("#PieceCountModulusOfElasticity").width(100);
             });
         </script> 
         
@@ -91,43 +91,43 @@
         </p>
         
         <p>Does the loading include roof loading = 
-            @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
-                .Name("LoadIncludesRoofLoadingUse")
+            @(Html.Kendo().DropDownListFor(x => x.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel)
+                .Name("BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel")
                 .DataTextField("Text")
                 .DataValueField("Value")
                 .BindTo(new List<SelectListItem>()
                     {
                         new SelectListItem() {
-                            Text = "No", Value = "False"  
+                            Text = "No", Value = "false" 
                         },
                         new SelectListItem() {
-                            Text = "Yes", Value = "True"  
+                            Text = "Yes", Value = "true"
                         }
                     }
                 )
-                .Events( e => e.Change("OnChangeLoadIncludesRoofLoadingUse"))
+                .Events( e => e.Change("OnChangeBeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel"))
             )
             
             <span id="spanPiecesRoofLoading">
      
   
-            @(Html.Kendo().DropDownListFor(x => x.LoadIncludesRoofLoadingUse)
-                .Name("PiecesRoofLoading")
+            @(Html.Kendo().DropDownListFor(x => x.PieceCountModulusOfElasticity)
+                .Name("PieceCountModulusOfElasticity")
                 .DataTextField("Text")
                 .DataValueField("Value")
                 .BindTo(new List<SelectListItem>()
                 {
                     new SelectListItem() {
-                        Text = "1 Piece", Value = "1"  
+                        Text = "1 Piece", Value = "1" 
                     },
                     new SelectListItem() {
-                        Text = "2 Pieces", Value = "2"  
+                        Text = "2 Pieces", Value = "TwoPieces"  
                     },
                     new SelectListItem() {
-                        Text = "3 Pieces", Value = "3"  
+                        Text = "3 Pieces", Value = "ThreePieces"  
                     },
                     new SelectListItem() {
-                        Text = "4+ Pieces", Value = "4"  
+                        Text = "4+ Pieces", Value = "FourPlusPieces"  
                     }
                     
                 })
@@ -138,9 +138,9 @@
             
 <script>
 
-    function OnChangeLoadIncludesRoofLoadingUse() {
-        var resp = $("#LoadIncludesRoofLoadingUse").val();
-        if (resp == "True") {
+    function OnChangeBeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel() {
+        var resp = $("#BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel").val();
+        if (resp == "true") {
             $("#spanPiecesRoofLoading").show();
         }
         else {
