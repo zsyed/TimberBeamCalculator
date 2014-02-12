@@ -74,7 +74,7 @@ namespace TimberBeamCalculator.Controllers
                 dim.ModulusOfElasticityK8 = 1.1;
                 if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.TwoPieces)
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
+                    if (dim.TimberGradeWoodType == WoodType.Softwoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.14;
                     }
@@ -85,7 +85,7 @@ namespace TimberBeamCalculator.Controllers
                 }
                 else if (dim.PieceCountModulusOfElasticity == ModulusPieceCount.ThreePieces)
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
+                    if (dim.TimberGradeWoodType == WoodType.Softwoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.21;
                     }
@@ -96,7 +96,7 @@ namespace TimberBeamCalculator.Controllers
                 }
                 else
                 {
-                    if (dim.TimberGradeWoodType == WoodType.SoftWoods)
+                    if (dim.TimberGradeWoodType == WoodType.Softwoods)
                     {
                         dim.ModulusOfElasticityK9 = 1.24;
                     }

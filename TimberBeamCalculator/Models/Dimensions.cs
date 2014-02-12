@@ -7,8 +7,8 @@ namespace TimberBeamCalculator.Models
 {
     public enum WoodType
     {
-        SoftWoods,
-        HardWoods,
+        Softwoods,
+        Hardwoods,
         Oaks
     }
 
@@ -25,8 +25,8 @@ namespace TimberBeamCalculator.Models
         public int JobNumber { get; set; }
         public string ProjectDate { get; set; }
         public double BeamSpanLength { get; set; }
-        public double WidthOfTimberBeam { get; set; }
-        public double DepthOfTimberBeam { get; set; }
+        public int WidthOfTimberBeam { get; set; }
+        public int DepthOfTimberBeam { get; set; }
         public string TimberGrade { get; set; }
         public double BendingParallelToGrain { get; set; }
         public double CompPrependicularToGrain { get; set; }

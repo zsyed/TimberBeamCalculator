@@ -28,18 +28,22 @@
                 
         <p>Width of Timber Beam =  @(Html.Kendo().NumericTextBoxFor(x => x.WidthOfTimberBeam)
             .Name("WidthOfTimberBeam")
-            .Format("#.00 millimetres")
-            .Min(00.00)
-            .Value(47.00)
+            .Format("# millimetres")
+            .Decimals(0)
+            .Min(0)
+            .Value(47)
+            .Step(1)
             .Spinners(false)
             )
         </p>
         <p>Depth of Timber Beam =  @(Html.Kendo().NumericTextBoxFor(x => x.DepthOfTimberBeam)
             .Name("DepthOfTimberBeam")
-            .Format("#.00 millimetres")
-            .Min(72.00)
-            .Max(300.00)
-            .Value(195.00)
+            .Format("# millimetres")
+            .Decimals(0)
+            .Min(72)
+            .Max(300)
+            .Value(195)
+            .Step(1)
             .Spinners(false)
         ) (72 mm minimum - 300 mm maximum)
         </p>
@@ -109,7 +113,7 @@
             )
             
             <span id="spanPiecesRoofLoading">
-     
+            How many pieces?
   
             @(Html.Kendo().DropDownListFor(x => x.PieceCountModulusOfElasticity)
                 .Name("PieceCountModulusOfElasticity")
