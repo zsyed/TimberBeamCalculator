@@ -10,9 +10,11 @@
             $(document).ready(function () {
                 $("#spanPiecesRoofLoading").hide();
                 $("#TimberGradeGrid").hide();
+                $("#DivUniformlyDistributedLoad").hide();
                 $("#TimberGrade").width(50);
                 $("#BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel").width(60);
                 $("#PieceCountModulusOfElasticity").width(100);
+                $("#LoadDetailsDropDownList").width(500);
             });
         </script> 
         
@@ -48,6 +50,77 @@
         ) (72 mm minimum - 300 mm maximum)
         </p>
             
+        <p>
+            @(Html.Kendo().Button()
+                .Name("UniformlyDistributedLoad")
+                .Content("Uniformly Distributed Load")
+                .HtmlAttributes( new {type = "button"} )
+            )
+
+            @(Html.Kendo().Button()
+                .Name("PartialUniformlyDistributedLoad")
+                .Content("Partial Uniformly Distributed Load")
+                .HtmlAttributes( new {type = "button"} )
+            )
+
+            @(Html.Kendo().Button()
+                .Name("PointLoad")
+                .Content("Point Load")
+                .HtmlAttributes( new {type = "button"} )
+            )
+
+        </p>
+            
+        <p>
+            <div id="DivUniformlyDistributedLoad" style="width:700px;height:150px;border:2px solid #000;">
+                <p>
+                @(Html.Kendo().DropDownListFor(x => x.BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel)
+                    .Name("LoadDetailsDropDownList")
+                    .DataTextField("Text")
+                    .DataValueField("Value")
+                    .BindTo(new List<SelectListItem>()
+                        {
+                                new SelectListItem() {
+                                Text = "Slopping roof, 0 to 30", Value = "false" 
+                            },
+                                new SelectListItem() {
+                                Text = "Slopping roof, 0 to 30 in North East England, Scotland, or 100m above sea level", Value = "false1" 
+                            },
+                                new SelectListItem() {
+                                Text = "Slopping roof, 0 to 30 in North East England, Scotland, or 100m above sea level", Value = "false2" 
+                            }
+                            
+                        }
+                    )
+                )
+                    </p>
+                Permanent Load =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
+                .Name("PermanentLoad")
+                .Format("#.00 kN/m2")
+                .Min(00.00)
+                .Value(1.00)
+                .Spinners(false)
+                )
+
+                Variable Load =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
+                .Name("VariableLoad")
+                .Format("#.00 kN/m2")
+                .Min(00.00)
+                .Value(1.00)
+                .Spinners(false)
+                )
+
+                <p>
+                Width of load perpendicular to beam, or height of load supported by beam =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
+                .Name("LoadPerpendicular")
+                .Format("#.00 metres")
+                .Min(00.00)
+                .Value(1.00)
+                .Spinners(false)
+                )
+                </p>
+            </div>
+        </p>
            
             
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
@@ -166,6 +239,10 @@
 
     $("#TimberGradeButtonHide").mousedown(function () {
         $("#TimberGradeGrid").hide();
+    });
+
+    $("#UniformlyDistributedLoad").mousedown(function () {
+        $("#DivUniformlyDistributedLoad").show();
     });
 
         </script>
