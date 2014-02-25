@@ -30,6 +30,27 @@ namespace TimberBeamCalculator.Controllers
         //
         // GET: /Calculator/
 
+        public ActionResult GetLoadDetails([DataSourceRequest] DataSourceRequest request)
+        {
+            var loadingDetails = new List<LoadingDetails>();
+            var wb = new XLWorkbook(Server.MapPath("~/App_Data/LoadingDetails.xlsx"));
+            var ws = wb.Worksheet(1);
+            var firstRowUsed = ws.FirstRowUsed();
+            var loadingDetailRow = firstRowUsed.RowUsed();
+            loadingDetailRow = loadingDetailRow.RowBelow();
+            loadingDetailRow = loadingDetailRow.RowBelow();
+            while (!loadingDetailRow.Cell(1).IsEmpty())
+            {
+                var loadingDetail = new LoadingDetails();
+                loadingDetail.NameOfLoad = loadingDetailRow.Cell(1).GetString();
+                loadingDetail.DeadLoad = loadingDetailRow.Cell(2).GetString().ToString().Length == 0? 0 : Convert.ToDouble(loadingDetailRow.Cell(2).GetString());
+                loadingDetail.LiveLoad = loadingDetailRow.Cell(3).GetString().ToString().Length == 0 ? 0 : Convert.ToDouble(loadingDetailRow.Cell(3).GetString());
+                loadingDetails.Add(loadingDetail);
+                loadingDetailRow = loadingDetailRow.RowBelow();
+            }
+            return Json(loadingDetails.Select(c => new { LoadingDetailText = c.NameOfLoad, LoadingDetailValue = c.NameOfLoad }), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Index()
         {
             var dim = new TimberBeamCalculator.Models.Dimensions();

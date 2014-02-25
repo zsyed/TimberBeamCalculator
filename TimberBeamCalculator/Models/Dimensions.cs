@@ -41,6 +41,7 @@ namespace TimberBeamCalculator.Models
         public ModulusPieceCount PieceCountModulusOfElasticity { get; set; }
         public double ModulusOfElasticityK8 { get; set; }
         public double ModulusOfElasticityK9 { get; set; }
+        public string LoadDetailsDropDownList { get; set; }
 
     }
 }
