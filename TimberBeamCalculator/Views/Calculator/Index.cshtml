@@ -14,7 +14,7 @@
                 $("#TimberGrade").width(50);
                 $("#BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel").width(60);
                 $("#PieceCountModulusOfElasticity").width(100);
-                $("#LoadDetailsDropDownList").width(550);
+                $("#NameOfTheLoad").width(550);
             });
         </script> 
         
@@ -74,38 +74,28 @@
         <p>
             <div id="DivUniformlyDistributedLoad" style="width:750px;height:150px;border:2px solid #000;">
                 <p>
-                @(Html.Kendo().DropDownListFor(x => x.LoadDetailsDropDownList)
-                    .Name("LoadDetailsDropDownList")
-                    .DataTextField("LoadingDetailText")
-                    .DataValueField("LoadingDetailValue")
-                    .DataSource(s =>
-                                    {
-                                        s.Read(r =>
-                                                    {
-                                                        r.Action("GetLoadDetails", "Calculator");
-                                                    }
-                                        );
-                                    }
-
-                                )
-
+                @(Html.Kendo().DropDownListFor(x => x.NameOfTheLoad)
+                    .Name("NameOfTheLoad")
+                    .DataTextField("Text")
+                    .DataValueField("Value")
+                    .DataSource(s => { s.Read(r => { r.Action("GetLoadDetails", "Calculator"); } ); } )
+                    .Events(e => e.Select("OnSelectNameOfTheLoadDropDownList"))
                 )
-                    </p>
-                Permanent Load =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
-                .Name("PermanentLoad")
-                .Format("#.00 kN/m2")
-                .Min(00.00)
-                .Value(1.00)
-                .Spinners(false)
-                )
+                </p>
 
-                Variable Load =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
-                .Name("VariableLoad")
-                .Format("#.00 kN/m2")
-                .Min(00.00)
-                .Value(1.00)
-                .Spinners(false)
-                )
+                Permanent Load =  @(Html.Kendo().NumericTextBoxFor(x => x.PermanentLoad)
+                                        .Name("PermanentLoad")
+                                        .Format("#.00 kN/m2")
+                                        .Min(00.00)
+                                        .Spinners(false)
+                                    )
+
+                Variable Load =  @(Html.Kendo().NumericTextBoxFor(x => x.VariableLoad)
+                                                        .Name("VariableLoad")
+                                                        .Format("#.00 kN/m2")
+                                                        .Min(00.00)
+                                                        .Spinners(false)
+                                 )
 
                 <p>
                 Width of load perpendicular to beam, or height of load supported by beam =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
@@ -221,6 +211,13 @@
             $("#spanPiecesRoofLoading").hide();
         }
 
+    }
+
+    function OnSelectNameOfTheLoadDropDownList(e) {
+            var dataItem = this.dataItem(e.item.index());
+            var split = dataItem.Value.split('|');
+            $("#PermanentLoad").data("kendoNumericTextBox").value(split[0]);
+            $("#VariableLoad").data("kendoNumericTextBox").value(split[1]);
     }
 
     function OnChangeDivTimberGradeGrid(arg) {
