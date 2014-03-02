@@ -44,5 +44,6 @@ namespace TimberBeamCalculator.Models
         public string NameOfTheLoad { get; set; }
         public double PermanentLoad { get; set; }
         public double VariableLoad { get; set; }
+        public double LoadPerpendicularToBeam { get; set; }
     }
 }

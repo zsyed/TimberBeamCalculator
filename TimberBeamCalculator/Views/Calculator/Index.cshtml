@@ -53,19 +53,19 @@
         <p>
             @(Html.Kendo().Button()
                 .Name("UniformlyDistributedLoad")
-                .Content("Uniformly Distributed Load")
                 .HtmlAttributes( new {type = "button"} )
+                .ImageUrl(Url.Content("~/Images/uniformlydistributedload.png"))
             )
 
             @(Html.Kendo().Button()
                 .Name("PartialUniformlyDistributedLoad")
-                .Content("Partial Uniformly Distributed Load")
+                .ImageUrl(Url.Content("~/Images/partiallyuniformload.png"))
                 .HtmlAttributes( new {type = "button"} )
             )
 
             @(Html.Kendo().Button()
                 .Name("PointLoad")
-                .Content("Point Load")
+                .ImageUrl(Url.Content("~/Images/pointload.png"))
                 .HtmlAttributes( new {type = "button"} )
             )
 
@@ -98,7 +98,7 @@
                                  )
 
                 <p>
-                Width of load perpendicular to beam, or height of load supported by beam =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
+                Width of load perpendicular to beam, or height of load supported by beam =  @(Html.Kendo().NumericTextBoxFor(x => x.LoadPerpendicularToBeam)
                 .Name("LoadPerpendicular")
                 .Format("#.00 metres")
                 .Min(00.00)

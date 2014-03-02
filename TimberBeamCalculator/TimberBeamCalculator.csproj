@@ -490,6 +490,9 @@
     <Content Include="Content\kendo\2013.3.1324\images\kendoui.woff" />
     <Content Include="App_Data\LoadingDetails.xlsx" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\partiallyuniformload.png" />
+    <Content Include="Images\pointload.png" />
+    <Content Include="Images\uniformlydistributedload.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
