@@ -3,7 +3,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Calculator goes here.</h2>
         @using (Html.BeginForm()) {
             
         <script>
@@ -15,9 +14,15 @@
                 $("#BeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel").width(60);
                 $("#PieceCountModulusOfElasticity").width(100);
                 $("#NameOfTheLoad").width(550);
+
+                $("#UniformlyDistributeLoadDivId").hide();
+                $("#PartialUniformlyDistributedLoadDivId").hide();
+                $("#PointLoadDivLabel").hide();
             });
         </script> 
         
+        <h3>Enter Beam Details</h3>
+            
         <p>Beam span length =  @(Html.Kendo().NumericTextBoxFor(x => x.BeamSpanLength)
             .Name("BeamSpanLength")
             .Format("#.00 metres")
@@ -50,7 +55,9 @@
         ) (72 mm minimum - 300 mm maximum)
         </p>
             
-        <p>
+        <h3>Enter Load Details</h3>
+<div id="Load1SelectLoadType"><h4>Load 1: Select load type </h4>            </div>
+<div id="UniformlyDistributeLoadDivId"><h4>Load 1: Uniformly Distributed Load <a id="changethis" href="/calculator" >[change this]</a> </h4>            </div><div id="PartialUniformlyDistributedLoadDivId"><h4>Load 1:Partial Uniformly Distributed Load <a id="changethis" href="/calculator" >[change this]</a> </h4>            </div><div id="PointLoadDivLabel"><h4>Load 1: Point Load <a id="changethis" href="/calculator" >[change this]</a> </h4>            </div>                                            <p>
             @(Html.Kendo().Button()
                 .Name("UniformlyDistributedLoad")
                 .HtmlAttributes( new {type = "button"} )
@@ -70,9 +77,10 @@
             )
 
         </p>
-            
+                        
         <p>
-            <div id="DivUniformlyDistributedLoad" style="width:750px;height:150px;border:2px solid #000;">
+            <div id="DivUniformlyDistributedLoad" style="width:750px;height:170px;border:2px solid #000;">
+                 <p>Loading Details:</p>
                 <p>
                 @(Html.Kendo().DropDownListFor(x => x.NameOfTheLoad)
                     .Name("NameOfTheLoad")
@@ -109,6 +117,7 @@
             </div>
         </p>
            
+        <h3>Safety Factors</h3>
             
         <p>Timber Grade =  @(Html.Kendo().AutoCompleteFor(x => x.TimberGrade)
             .Name("TimberGrade")
@@ -120,7 +129,7 @@
                 .Content("Show Chart")
                 .HtmlAttributes( new {type = "button"} )
                 )
-                         @(Html.Kendo().Button()
+             @(Html.Kendo().Button()
                 .Name("TimberGradeButtonHide")
                 .Content("Hide Chart")
                 .HtmlAttributes( new {type = "button"} )
@@ -199,7 +208,7 @@
                   </span>
             </p>
             
-            
+                  
 <script>
 
     function OnChangeBeamCompriseOfTwoOrMorePiecesConnectedTogetherInParallel() {
@@ -237,6 +246,39 @@
 
     $("#UniformlyDistributedLoad").mousedown(function () {
         $("#DivUniformlyDistributedLoad").show();
+        $("#PartialUniformlyDistributedLoad").hide();
+        $("#PointLoad").hide();
+
+        $("#Load1SelectLoadType").hide();
+        $("#UniformlyDistributeLoadDivId").show();
+        $("#PartialUniformlyDistributedLoadDivId").hide();
+        $("#PointLoadDivLabel").hide();
+    });
+
+    $("#PartialUniformlyDistributedLoad").mousedown(function () {
+        $("#DivUniformlyDistributedLoad").show();
+        $("#UniformlyDistributedLoad").hide();
+        $("#PointLoad").hide();
+
+        $("#Load1SelectLoadType").hide();
+        $("#UniformlyDistributeLoadDivId").hide();
+        $("#PartialUniformlyDistributedLoadDivId").show();
+        $("#PointLoadDivLabel").hide();
+
+    });
+
+    $("#PointLoad").mousedown(function () {
+        $("#DivUniformlyDistributedLoad").show();
+        $("#UniformlyDistributedLoad").hide();
+        $("#PartialUniformlyDistributedLoad").hide();
+
+        $("#Load1SelectLoadType").hide();
+        $("#UniformlyDistributeLoadDivId").hide();
+        $("#PartialUniformlyDistributedLoadDivId").hide();
+        $("#PointLoadDivLabel").show();
+    });
+
+    $("#changethis").click(function (e) {
     });
 
         </script>
@@ -254,5 +296,4 @@
 }
 
 </style>
-
 
